@@ -24,3 +24,5 @@ A Java CLI app that tracks all deposits and payments like Netflix’s finance sy
 
 # Interesting Code
 The app uses FileWriter and LocalDate/Time to store transactions neatly:
+I found creating csv file to be most interesting for me because it was hard trying to figure out how to make a csv file at first. My peers and I struggled trying to create this file for two days.  However, it was quite easy to make once I understood the process.In your project folder, right-click  New  File  name transactions.csv 
+<img width="1918" height="1078" alt="interestingpiececode" src="https://github.com/user-attachments/assets/f5e25b7e-5abe-4ba0-bfc4-ffd93847e041" />
