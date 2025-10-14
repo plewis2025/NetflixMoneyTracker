@@ -11,7 +11,7 @@ A Java CLI app that tracks all deposits and payments like Netflix’s finance sy
 - Filter transactions and run reports
 
 ## Example Screens
-(Include screenshots from your IntelliJ console)
+
 
 ## Interesting Code
 The app uses FileWriter and LocalDate/Time to store transactions neatly:
