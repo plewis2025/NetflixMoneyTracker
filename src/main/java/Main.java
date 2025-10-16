@@ -4,11 +4,61 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
-public class Main {
+//  Colors (optional)
+    public static final String RESET = "\u001B[0m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String CYAN = "\u001B[36m";
+
     static Scanner scanner = new Scanner(System.in);
     static String fileName = "transactions.csv";
 
+    //  Add these here:
+    static Ledger ledger = new Ledger();
+    static Report report = new Report();
+
     public static void main(String[] args) {
+        //  Welcome message
+        System.out.println(GREEN + "====================================" + RESET);
+        System.out.println(CYAN + " Welcome to Prosperity's Ledger App! " + RESET);
+        System.out.println(GREEN + "Track your money easily and smartly!" + RESET);
+        System.out.println(GREEN + "====================================" + RESET);
+
+        // Start the main menu
+        showMainMenu();
+    }
+    public class Main {
+
+        // 1️ Global variables and objects at the top
+        static Scanner scanner = new Scanner(System.in);
+        static Ledger ledger = new Ledger(); //  Add this near top
+        static Report report = new Report(); //  (optional for later)
+
+        // 2️ Your main method
+        public static void main(String[] args) {
+            // Welcome message and menu start
+            showMainMenu();
+        }
+
+        // 3️ Your other methods like addDeposit() and makePayment()
+
+        public static void addDeposit() {
+            // your deposit code here
+        }
+
+        public static void makePayment() {
+            // your payment code here
+        }
+
+        // 4️ NOW add showLedger() right after those
+        public static void showLedger() {
+            ledger.showAll(); //  This is where your Ledger class does the work
+        }
+
+        // 5️ And your showMainMenu() goes somewhere near the top or bottom
+    }
+
+    //  Main Menu
+    public static void showMainMenu() {
         while (true) {
             System.out.println("\n===== NETFLIX MONEY TRACKER =====");
             System.out.println("D) Add Deposit");
@@ -37,9 +87,10 @@ public class Main {
         }
     }
 
-    //  Step 4: Add Deposit method
+    //  Add Deposit
     public static void addDeposit() {
         try {
+
             System.out.print("Enter description: ");
             String desc = scanner.nextLine();
             System.out.print("Enter vendor: ");
@@ -49,13 +100,13 @@ public class Main {
 
             String line = LocalDate.now() + "|" + LocalTime.now().withNano(0) + "|" + desc + "|" + vendor + "|" + amount;
             saveTransaction(line);
-            System.out.println(" Deposit added!");
+            System.out.println("Deposit added!");
         } catch (Exception e) {
-            System.out.println(" Error adding deposit!");
+            System.out.println("Error adding deposit!");
         }
     }
 
-    //  Step 5: Make Payment method
+    //  Make Payment
     public static void makePayment() {
         try {
             System.out.print("Enter description: ");
@@ -67,22 +118,22 @@ public class Main {
 
             String line = LocalDate.now() + "|" + LocalTime.now().withNano(0) + "|" + desc + "|" + vendor + "|" + amount;
             saveTransaction(line);
-            System.out.println(" Payment added!");
+            System.out.println("Payment added!");
         } catch (Exception e) {
-            System.out.println(" Error adding payment!");
+            System.out.println("Error adding payment!");
         }
     }
 
-    //  Step 6: Save to CSV file
+    //  Save Transaction
     public static void saveTransaction(String line) {
         try (FileWriter fw = new FileWriter(fileName, true)) {
             fw.write(line + "\n");
         } catch (IOException e) {
-            System.out.println(" Could not save transaction!");
+            System.out.println("Could not save transaction!");
         }
     }
 
-    // Step 7: Show Ledger
+    //  Show Ledger
     public static void showLedger() {
         try {
             List<String> lines = new ArrayList<>(Files.readAllLines(new File(fileName).toPath()));
@@ -91,7 +142,7 @@ public class Main {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            System.out.println(" Error reading ledger!");
+            System.out.println("Error reading ledger!");
         }
     }
 
